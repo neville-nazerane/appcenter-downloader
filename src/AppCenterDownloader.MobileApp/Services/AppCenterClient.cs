@@ -1,4 +1,5 @@
 ﻿using AppCenterDownloader.MobileApp.Models;
+using AppCenterDownloader.MobileApp.Models.AppCenter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace AppCenterDownloader.MobileApp.Services
         private readonly HttpClient _httpClient = httpClient;
         private readonly string _apiKey = apiKey;
 
-        public Task<IEnumerable<Organization>> GetOrganizationsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<Organization>>("orgs", cancellationToken);
+        public Task<IEnumerable<AppCenterOrganization>> GetOrganizationsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterOrganization>>("orgs", cancellationToken);
 
         public Task<IEnumerable<AppCenterApp>> GetAppsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterApp>>("apps?orderBy=display_name", cancellationToken);
 
@@ -28,16 +29,16 @@ namespace AppCenterDownloader.MobileApp.Services
                                                                    CancellationToken cancellationToken = default) 
             => GetFromJsonAsync<IEnumerable<AppCenterRelease>>($"apps/{owner_name}/{app_name}/releases?top={limit}", cancellationToken);
 
-        public Task<ReleaseInfo> GetReleaseInfoAsync(string owner_name,
+        public Task<AppCenterReleaseInfo> GetReleaseInfoAsync(string owner_name,
                                                      string app_name, 
                                                      int releaseId, 
                                                      CancellationToken cancellationToken = default)
-            => GetFromJsonAsync<ReleaseInfo>($"apps/{owner_name}/{app_name}/releases/{releaseId}", cancellationToken);
+            => GetFromJsonAsync<AppCenterReleaseInfo>($"apps/{owner_name}/{app_name}/releases/{releaseId}", cancellationToken);
 
-        public Task<ReleaseInfo> GetLatestReleaseInfoAsync(string owner_name,
+        public Task<AppCenterReleaseInfo> GetLatestReleaseInfoAsync(string owner_name,
                                                            string app_name,
                                                            CancellationToken cancellationToken = default)
-            => GetFromJsonAsync<ReleaseInfo>($"apps/{owner_name}/{app_name}/releases/latest", cancellationToken);
+            => GetFromJsonAsync<AppCenterReleaseInfo>($"apps/{owner_name}/{app_name}/releases/latest", cancellationToken);
 
         private async Task<TResult> GetFromJsonAsync<TResult>(string path, CancellationToken cancellationToken = default)
         {

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using AppCenterDownloader.MobileApp.Models.AppCenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace AppCenterDownloader.MobileApp.Models
+namespace AppCenterDownloader.MobileApp.Models.AppCenter
 {
-    public class ReleaseInfo
+    public class AppCenterReleaseInfo
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -85,7 +86,7 @@ namespace AppCenterDownloader.MobileApp.Models
         public string DestinationType { get; set; }
 
         [JsonPropertyName("distribution_groups")]
-        public IEnumerable<DistributionGroup> DistributionGroups { get; set; }
+        public IEnumerable<AppCenterDistributionGroup> DistributionGroups { get; set; }
 
         [JsonPropertyName("is_udid_provisioned")]
         public bool IsUdidProvisioned { get; set; }

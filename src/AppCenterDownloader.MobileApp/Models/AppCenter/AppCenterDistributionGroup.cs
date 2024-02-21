@@ -5,10 +5,10 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace AppCenterDownloader.MobileApp.Models
+namespace AppCenterDownloader.MobileApp.Models.AppCenter
 {
 
-    public class DistributionGroup
+    public class AppCenterDistributionGroup
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }

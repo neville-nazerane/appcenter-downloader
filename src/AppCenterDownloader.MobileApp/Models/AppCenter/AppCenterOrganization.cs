@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace AppCenterDownloader.MobileApp.Models
+namespace AppCenterDownloader.MobileApp.Models.AppCenter
 {
-    public class Organization
+    public class AppCenterOrganization
     {
 
         [JsonPropertyName("display_name")]

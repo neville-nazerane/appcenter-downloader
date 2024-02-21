@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AppCenterDownloader.MobileApp.Models.AppCenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace AppCenterDownloader.MobileApp.Models
+namespace AppCenterDownloader.MobileApp.Models.AppCenter
 {
     public class AppCenterRelease
     {
@@ -31,7 +32,7 @@ namespace AppCenterDownloader.MobileApp.Models
         public string DestinationType { get; set; }
 
         [JsonPropertyName("distribution_groups")]
-        public IEnumerable<DistributionGroup> DistributionGroups { get; set; }
+        public IEnumerable<AppCenterDistributionGroup> DistributionGroups { get; set; }
 
         [JsonPropertyName("is_external_build")]
         public bool IsExternalBuild { get; set; }
