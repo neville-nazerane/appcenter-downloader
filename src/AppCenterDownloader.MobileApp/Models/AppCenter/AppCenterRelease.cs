@@ -26,7 +26,7 @@ namespace AppCenterDownloader.MobileApp.Models.AppCenter
         public bool Enabled { get; set; }
 
         [JsonPropertyName("uploaded_at")]
-        public string UploadedAt { get; set; }
+        public DateTime UploadedAt { get; set; }
 
         [JsonPropertyName("destination_type")]
         public string DestinationType { get; set; }

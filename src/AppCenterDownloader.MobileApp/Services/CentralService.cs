@@ -1,6 +1,7 @@
 ﻿using Android.Accounts;
 using AppCenterDownloader.MobileApp.Models;
 using AppCenterDownloader.MobileApp.Models.LocalDb;
+using Java.Time;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +42,30 @@ public class CentralService(AppCenterClientProvider appCenterClientProvider, Loc
         return res?.DownloadUrl;
     }
 
-    public async Task GetReleasesAsync(string accountKey, AppDisplay app, CancellationToken cancellationToken = default)
+    public async Task<string> GetDownloadableUrlAsync(string accountKey, AppDisplay app, int releaseId, CancellationToken cancellationToken = default)
     {
         var client = await GetAppCenterClientAsync(accountKey);
-        var res = await client.GetReleasesAsync(app.OwnerName, app.AppName, 10, cancellationToken);
+
+        var res = await client.GetReleaseInfoAsync(app.OwnerName, app.AppName, releaseId, cancellationToken);
+        return res?.DownloadUrl;
+    }
+
+    public async IAsyncEnumerable<ReleaseDisplay> GetReleasesAsync(string accountKey,
+                                                                   AppDisplay app,
+                                                                   [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var client = await GetAppCenterClientAsync(accountKey);
+        var res = client.GetReleasesAsync(app.OwnerName, app.AppName, 10, cancellationToken);
+
+        await foreach (var release in res)
+        {
+            yield return new()
+            {
+                Id = release.Id,
+                Version = release.Version,
+                CreatedOn = release.UploadedAt
+            };
+        }
     }
 
     public bool SetAsFavorite(AppDisplay app) => _repository.FavoriteApps.Upsert(app);
