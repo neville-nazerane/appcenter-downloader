@@ -1,4 +1,5 @@
-﻿using AppCenterDownloader.MobileApp.Models.LocalDb;
+﻿using AppCenterDownloader.MobileApp.Models;
+using AppCenterDownloader.MobileApp.Models.LocalDb;
 using LiteDB;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace AppCenterDownloader.MobileApp.Services
     {
         private readonly ILiteDatabase database = database;
 
-        public ILiteCollection<DbAccount> Accounts => database.GetCollection<DbAccount>();
+        public ILiteCollection<DbAccount> Accounts => database.GetCollection<DbAccount>("accounts");
+
+        public ILiteCollection<AppDisplay> FavoriteApps => database.GetCollection<AppDisplay>("favApps");
 
 
     }

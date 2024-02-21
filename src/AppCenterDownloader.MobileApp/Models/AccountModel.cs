@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppCenterDownloader.MobileApp.Models.LocalDb
+namespace AppCenterDownloader.MobileApp.Models
 {
-    public class DbAccount
+    public class AccountModel
     {
 
         public string Key { get; set; }
 
         public string DisplayName { get; set; }
-
 
     }
 }
