@@ -50,6 +50,14 @@ public class CentralService(AppCenterClientProvider appCenterClientProvider, Loc
         return res?.DownloadUrl;
     }
 
+    public async Task<string> GetReleaseNotesUrlAsync(string accountKey, AppDisplay app, int releaseId, CancellationToken cancellationToken = default)
+    {
+        var client = await GetAppCenterClientAsync(accountKey);
+
+        var res = await client.GetReleaseInfoAsync(app.OwnerName, app.AppName, releaseId, cancellationToken);
+        return res?.DownloadUrl;
+    }
+
     public async IAsyncEnumerable<ReleaseDisplay> GetReleasesAsync(string accountKey,
                                                                    AppDisplay app,
                                                                    [EnumeratorCancellation] CancellationToken cancellationToken = default)
