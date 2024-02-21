@@ -38,7 +38,6 @@ public class CentralService(AppCenterClientProvider appCenterClientProvider, Loc
         var client = await GetAppCenterClientAsync(accountKey);
 
         var res = await client.GetLatestReleaseInfoAsync(app.OwnerName, app.AppName, cancellationToken);
-
         return res?.DownloadUrl;
     }
 
