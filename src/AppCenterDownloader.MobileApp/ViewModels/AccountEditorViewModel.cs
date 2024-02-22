@@ -18,6 +18,7 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public override void OnNavigatedTo()
         {
+            var str = Shell.Current.CurrentState.Location;
             if (_sourceWall.EditingAccountId is not null)
             {
                 Model.Key = _sourceWall.EditingAccountId;

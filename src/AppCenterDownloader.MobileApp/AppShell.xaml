@@ -14,7 +14,6 @@
 
     <ShellContent
             Title="Account Editor"
-            IsVisible="False"
             ContentTemplate="{DataTemplate pages:AccountEditorPage}"
             Route="account" />
 

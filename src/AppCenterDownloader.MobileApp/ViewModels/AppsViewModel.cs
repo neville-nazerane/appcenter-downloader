@@ -20,6 +20,7 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public override async Task OnNavigatedToAsync()
         {
+            ViewModelBase.SetLastLocation();
             Accounts = [];
 
             var res = _service.GetAccountDisplaysAsync();

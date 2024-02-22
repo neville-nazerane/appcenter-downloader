@@ -11,6 +11,11 @@ namespace AppCenterDownloader.MobileApp.Services
 
         public string EditingAccountId { get; set; }
 
+        public static string LastLocation 
+        { 
+            get => Preferences.Get(nameof(LastLocation), "apps");
+            set => Preferences.Set(nameof(LastLocation), value);
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AppCenterDownloader.MobileApp.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public virtual bool OnBack() => false;
 
+        public static void SetLastLocation() => SourceWall.LastLocation = Shell.Current.CurrentState.Location.OriginalString.Replace("//", string.Empty);
 
-        public Task NavigateToAsync(string path)
-            => Shell.Current.GoToAsync($"//{path}");
+        public static Task GoToLastLocationAsync() => NavigateToAsync(SourceWall.LastLocation);
+
+        public static Task NavigateToAsync(string path) => Shell.Current.GoToAsync($"//{path}");
 
     }
 }
