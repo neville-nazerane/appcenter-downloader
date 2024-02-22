@@ -9,26 +9,31 @@ using System.Threading.Tasks;
 
 namespace AppCenterDownloader.MobileApp.ViewModels
 {
-    public partial class AccountEditorViewModel(CentralService service, SourceWallService sourceWall) : ViewModelBase
+    public partial class AccountEditorViewModel(CentralService service, SourceWall sourceWall) : ViewModelBase
     {
         private readonly CentralService _service = service;
-        private readonly SourceWallService _sourceWall = sourceWall;
+        private readonly SourceWall _sourceWall = sourceWall;
 
         public AddAccountModel Model { get; set; }
 
         public override void OnNavigatedTo()
         {
-            Model.DisplayName = _sourceWall.EditingAccountId;
+            if (_sourceWall.EditingAccountId is not null)
+            {
+                Model.Key = _sourceWall.EditingAccountId;
+                Model.DisplayName = _service.GetAccountDisplayName(_sourceWall.EditingAccountId);
+            }
+            else
+            {
+                Model = new();
+            }
         }
 
         [RelayCommand]
         async Task SaveAsync()
         {
-            if (Model.DisplayName is not null && Model.ApiKey is not null)
-            {
-                await _service.AddAsync(Model);
-
-            }
+            if (!string.IsNullOrEmpty(Model.DisplayName) && !string.IsNullOrEmpty(Model.ApiKey))
+                await _service.Upsert(Model);
         }
 
     }

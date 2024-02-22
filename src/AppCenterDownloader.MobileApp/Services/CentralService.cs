@@ -17,21 +17,19 @@ public class CentralService(AppCenterClientProvider appCenterClientProvider, Loc
     private readonly AppCenterClientProvider _appCenterClientProvider = appCenterClientProvider;
     private readonly LocalRepository _repository = repository;
 
-
-    public async Task AddAsync(AddAccountModel account)
+    public async Task Upsert(AddAccountModel account)
     {
-        var key = Guid.NewGuid().ToString("N");
-
-        await SecureStorage.SetAsync(key.ToString(), account.ApiKey);
+        await SecureStorage.SetAsync(account.Key, account.ApiKey);
 
         var dbModel = new DbAccount
         {
-            Key = key,
+            Key = account.Key,
             DisplayName = account.DisplayName,
         };
-        _repository.Accounts.Insert(dbModel);
-
+        _repository.Accounts.Upsert(dbModel);
     }
+
+    public string GetAccountDisplayName(string key) => _repository.Accounts.FindOne(key)?.Key;
 
     public async Task<string> GetLatestDownloadableUrlAsync(string accountKey, AppDisplay app, CancellationToken cancellationToken = default)
     {

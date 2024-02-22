@@ -3,13 +3,19 @@
     x:Class="AppCenterDownloader.MobileApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:AppCenterDownloader.MobileApp"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:pages="clr-namespace:AppCenterDownloader.MobileApp.Pages"
+    Shell.FlyoutBehavior="Flyout"
     Title="AppCenterDownloader.MobileApp">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+            Title="All Apps"
+            ContentTemplate="{DataTemplate pages:AppsPage}"
+            Route="apps" />
+
+    <ShellContent
+            Title="Account Editor"
+            IsVisible="False"
+            ContentTemplate="{DataTemplate pages:AccountEditorPage}"
+            Route="account" />
 
 </Shell>

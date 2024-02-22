@@ -9,6 +9,8 @@ namespace AppCenterDownloader.MobileApp.Models
     public class AddAccountModel
     {
 
+        public string Key { get; set; }
+
         public string ApiKey { get; set; }
 
         public string DisplayName { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppCenterDownloader.MobileApp.Services
 {
-    public class SourceWallService
+    public class SourceWall
     {
 
         public string EditingAccountId { get; set; }

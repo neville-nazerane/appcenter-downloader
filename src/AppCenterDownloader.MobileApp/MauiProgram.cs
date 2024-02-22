@@ -2,6 +2,7 @@
 using AppCenterDownloader.MobileApp.Services;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
+using LiteDB;
 using Microsoft.Extensions.Logging;
 
 namespace AppCenterDownloader.MobileApp
@@ -29,12 +30,14 @@ namespace AppCenterDownloader.MobileApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            string dbLocation = Path.Combine(FileSystem.AppDataDirectory, "data.db");
 
             builder.Services
                 
                     .AddTransient(p => new AppCenterClientProvider(_httpClient))
-                    .AddSingleton<SourceWallService>()
-                    .AddSingleton<LocalRepository>()
+                    .AddSingleton<SourceWall>()
+                    .AddTransient<LocalRepository>()
+                    .AddSingleton<ILiteDatabase>(p => new LiteDatabase(dbLocation))
                     .AddTransient<CentralService>()
 
                     .AddGeneratedInjections();

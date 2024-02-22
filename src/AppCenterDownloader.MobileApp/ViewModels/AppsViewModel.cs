@@ -1,6 +1,7 @@
 ﻿using AppCenterDownloader.MobileApp.Models;
 using AppCenterDownloader.MobileApp.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace AppCenterDownloader.MobileApp.ViewModels
 {
-    public partial class AppsViewModel(CentralService service) : ViewModelBase
+    public partial class AppsViewModel(CentralService service, SourceWall sourceWall) : ViewModelBase
     {
         private readonly CentralService _service = service;
-
+        private readonly SourceWall _sourceWall = sourceWall;
         [ObservableProperty]
         private ObservableCollection<AccountDisplay> accounts;
 
@@ -27,7 +28,12 @@ namespace AppCenterDownloader.MobileApp.ViewModels
                 Accounts.Add(account);
         }
 
-
+        [RelayCommand]
+        Task AddAsync()
+        {
+            _sourceWall.EditingAccountId = null;
+            return NavigateToAsync("account");
+        }
 
     }
 }
