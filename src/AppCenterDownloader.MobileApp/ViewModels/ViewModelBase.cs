@@ -16,5 +16,9 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public virtual bool OnBack() => false;
 
+
+        public Task NavigateToAsync(string path)
+            => Shell.Current.GoToAsync($"//{path}");
+
     }
 }
