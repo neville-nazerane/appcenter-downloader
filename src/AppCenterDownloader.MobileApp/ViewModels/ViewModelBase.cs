@@ -12,5 +12,9 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public virtual void OnNavigatedTo() { }
 
+        public virtual Task OnNavigatedToAsync() => Task.CompletedTask;
+
+        public virtual bool OnBack() => false;
+
     }
 }
