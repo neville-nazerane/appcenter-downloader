@@ -19,8 +19,6 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public static void SetLastLocation() => SourceWall.LastLocation = Shell.Current.CurrentState.Location.OriginalString.Replace("//", string.Empty);
 
-        public static Task NavigateToLastLocationAsync() => NavigateToAsync(SourceWall.LastLocation);
-
         public static Task NavigateToAsync(string path) => Shell.Current.GoToAsync($"//{path}");
 
         public static Task DisplayMessageAsync(string title, string message)

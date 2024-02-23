@@ -33,9 +33,6 @@
                     <comp:ReleaseNotes Grid.Row="2" Grid.ColumnSpan="2"
                                        ReleaseId="{Binding Id}" />
 
-                    <!--<Label Grid.Row="2" Grid.ColumnSpan="2"
-                           Text="Tap to view release notes" />-->
-
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

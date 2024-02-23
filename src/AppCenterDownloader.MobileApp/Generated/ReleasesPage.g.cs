@@ -27,18 +27,6 @@ public partial class ReleasesPage
     }
 
 
-    protected override bool OnBackButtonPressed()
-    {
-        OnBackButtonPressedInternal();
-        var res1 =  ViewModel.OnBack();
-        if (!res1) return false;
-
-        return base.OnBackButtonPressed();
-    }
-
-    partial void OnBackButtonPressedInternal();
-
-
     protected override async void OnNavigatedTo(Microsoft.Maui.Controls.NavigatedToEventArgs args)
     {
         OnNavigatedToInternal();

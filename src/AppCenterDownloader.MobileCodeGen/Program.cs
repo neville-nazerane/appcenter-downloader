@@ -12,7 +12,6 @@ await CodeGenerationBuilder.WithNewInstance()
                            .WithMobileProjectName("AppCenterDownloader.MobileApp")
                            .WithExecutionLocations("AppCenterDownloader.MobileCodeGen")
 
-                           .AddPageToViewModelEvent(PageEventType.OnBackButtonPressed, "OnBack")
                            .AddPageToViewModelEvent(PageEventType.OnNavigatedTo, "OnNavigatedTo")
                            .AddPageToViewModelEvent(PageEventType.OnNavigatedTo, "OnNavigatedToAsync", true)
 
