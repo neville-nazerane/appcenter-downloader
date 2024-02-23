@@ -36,6 +36,12 @@
                                     <Image Source="{Binding IconUrl}" />
                                     <Label Grid.Column="1"
                                            Text="{Binding DisplayName}" />
+
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GoToReleasesCommand, Source={x:RelativeSource AncestorType={x:Type vm:AppsViewModel}}}"
+                                                              CommandParameter="{Binding Id}" />
+                                    </Grid.GestureRecognizers>
                                     
                                 </Grid>
                             </DataTemplate>

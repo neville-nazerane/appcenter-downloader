@@ -17,4 +17,9 @@
             ContentTemplate="{DataTemplate pages:AccountEditorPage}"
             Route="account" />
 
+    <ShellContent
+            Title="Releases"
+            ContentTemplate="{DataTemplate pages:ReleasesPage}"
+            Route="releases" />
+
 </Shell>

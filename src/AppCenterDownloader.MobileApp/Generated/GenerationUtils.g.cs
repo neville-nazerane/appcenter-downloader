@@ -9,7 +9,9 @@ public static class GenerationUtils
    public static IServiceCollection AddGeneratedInjections(this IServiceCollection services)
         => services.AddTransient<AccountEditorPage>()
                    .AddTransient<AppsPage>()
+                   .AddTransient<ReleasesPage>()
                    .AddTransient<AccountEditorViewModel>()
-                   .AddTransient<AppsViewModel>();
+                   .AddTransient<AppsViewModel>()
+                   .AddTransient<ReleasesViewModel>();
 
 }

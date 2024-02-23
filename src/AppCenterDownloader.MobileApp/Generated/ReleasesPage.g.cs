@@ -3,12 +3,12 @@ using AppCenterDownloader.MobileApp.ViewModels;
 
 namespace AppCenterDownloader.MobileApp.Pages;
 
-public partial class AppsPage 
+public partial class ReleasesPage 
 {
     
-    private AppsViewModel viewModel = null;
+    private ReleasesViewModel viewModel = null;
 
-    public AppsViewModel ViewModel
+    public ReleasesViewModel ViewModel
     {
         get
         {
@@ -21,7 +21,7 @@ public partial class AppsPage
     {
         if (viewModel is null)
         {
-            viewModel = Shell.Current.Handler.MauiContext.Services.GetService<AppsViewModel>();
+            viewModel = Shell.Current.Handler.MauiContext.Services.GetService<ReleasesViewModel>();
             BindingContext = viewModel;
         }
     }

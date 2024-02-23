@@ -18,10 +18,10 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public override void OnNavigatedTo()
         {
-            if (_sourceWall.EditingAccountId is not null)
+            if (_sourceWall.SelectedAccountKey is not null)
             {
-                Model.Key = _sourceWall.EditingAccountId;
-                Model.DisplayName = _service.GetAccountDisplayName(_sourceWall.EditingAccountId);
+                Model.Key = _sourceWall.SelectedAccountKey;
+                Model.DisplayName = _service.GetAccountDisplayName(_sourceWall.SelectedAccountKey);
             }
             else
             {

@@ -1,10 +1,9 @@
 namespace AppCenterDownloader.MobileApp.Pages;
 
-public partial class AppsPage : ContentPage
+public partial class ReleasesPage : ContentPage
 {
-	public AppsPage()
+	public ReleasesPage()
 	{
 		InitializeComponent();
 	}
-
 }

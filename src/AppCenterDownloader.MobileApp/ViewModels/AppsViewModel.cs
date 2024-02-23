@@ -41,8 +41,23 @@ namespace AppCenterDownloader.MobileApp.ViewModels
         [RelayCommand]
         Task AddAsync()
         {
-            _sourceWall.EditingAccountId = null;
+            _sourceWall.SelectedAccountKey = null;
             return NavigateToAsync("account");
+        }
+
+        [RelayCommand]
+        async Task GoToReleasesAsync(Guid appId)
+        {
+            foreach (var account in Accounts)
+                foreach (var app in account.Apps)
+                    if (app.Id == appId)
+                    {
+                        _sourceWall.SelectedAccountKey = account.Key;
+                        await _sourceWall.SetSelectedAppAsync(app);
+                        break;
+                    }
+            
+            await NavigateToAsync("releases");
         }
 
     }

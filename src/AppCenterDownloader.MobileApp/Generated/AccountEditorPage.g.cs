@@ -27,11 +27,13 @@ public partial class AccountEditorPage
     }
 
 
-    protected override bool OnBackButtonPressed()
+    protected override async bool OnBackButtonPressed()
     {
         OnBackButtonPressedInternal();
         var res1 =  ViewModel.OnBack();
         if (!res1) return false;
+        var res2 = await ViewModel.OnBackAsync();
+        if (!res2) return false;
 
         return base.OnBackButtonPressed();
     }
