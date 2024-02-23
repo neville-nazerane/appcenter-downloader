@@ -15,6 +15,10 @@ namespace AppCenterDownloader.MobileApp
             BaseAddress = new("https://api.appcenter.ms")
         };
 
+        private static IServiceProvider services;
+
+        public static IServiceProvider Services => services;
+
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
@@ -46,7 +50,9 @@ namespace AppCenterDownloader.MobileApp
     		builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var built = builder.Build();
+            services = built.Services;
+            return built;
         }
     }
 }

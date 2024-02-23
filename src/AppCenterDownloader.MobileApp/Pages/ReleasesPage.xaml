@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:AppCenterDownloader.MobileApp.ViewModels"
              xmlns:m="clr-namespace:AppCenterDownloader.MobileApp.Models"
+             xmlns:comp="clr-namespace:AppCenterDownloader.MobileApp.Components"
              x:Class="AppCenterDownloader.MobileApp.Pages.ReleasesPage"
              x:DataType="vm:ReleasesViewModel"
              Title="ReleasesPage">
@@ -16,6 +17,7 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="m:ReleaseDisplay">
                 <Grid ColumnDefinitions="*, 100"
+                      RowSpacing="10"
                       RowDefinitions="40, 20, auto" >
 
                     <Label Text="{Binding Version}" />
@@ -27,9 +29,12 @@
 
                     <Label Grid.Row="1" Grid.ColumnSpan="2"
                            Text="{Binding CreatedOn}" />
-                    
-                    <Label Grid.Row="2" Grid.ColumnSpan="2"
-                           Text="Tap to view release notes" />
+
+                    <comp:ReleaseNotes Grid.Row="2" Grid.ColumnSpan="2"
+                                       ReleaseId="{Binding Id}" />
+
+                    <!--<Label Grid.Row="2" Grid.ColumnSpan="2"
+                           Text="Tap to view release notes" />-->
 
                 </Grid>
             </DataTemplate>
