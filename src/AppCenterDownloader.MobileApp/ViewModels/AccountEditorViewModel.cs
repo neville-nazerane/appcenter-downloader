@@ -42,5 +42,11 @@ namespace AppCenterDownloader.MobileApp.ViewModels
             }
         }
 
+        public override bool OnBack()
+        {
+            _ = NavigateToLastLocationAsync();
+            return true;
+        }
+
     }
 }

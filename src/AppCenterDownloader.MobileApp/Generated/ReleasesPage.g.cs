@@ -27,13 +27,11 @@ public partial class ReleasesPage
     }
 
 
-    protected override async bool OnBackButtonPressed()
+    protected override bool OnBackButtonPressed()
     {
         OnBackButtonPressedInternal();
         var res1 =  ViewModel.OnBack();
         if (!res1) return false;
-        var res2 = await ViewModel.OnBackAsync();
-        if (!res2) return false;
 
         return base.OnBackButtonPressed();
     }

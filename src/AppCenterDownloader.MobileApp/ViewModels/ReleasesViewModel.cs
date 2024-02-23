@@ -43,7 +43,11 @@ namespace AppCenterDownloader.MobileApp.ViewModels
             await Browser.OpenAsync(url);
         }
 
-        public override Task<bool> OnBackAsync() => GoToLastLocationAsync();
+        public override bool OnBack()
+        {
+            _ = NavigateToLastLocationAsync();
+            return false;
+        }
 
     }
 }

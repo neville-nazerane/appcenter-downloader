@@ -7,11 +7,16 @@
              x:DataType="vm:ReleasesViewModel"
              Title="ReleasesPage">
 
-    <CollectionView ItemsSource="{Binding Releases}">
+    <CollectionView ItemsSource="{Binding Releases}"
+                    Margin="20, 25">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="30" />
+        </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="m:ReleaseDisplay">
-                <Grid ColumnDefinitions="*, 50"
-                      RowDefinitions="30, 20, auto" >
+                <Grid ColumnDefinitions="*, 100"
+                      RowDefinitions="40, 20, auto" >
 
                     <Label Text="{Binding Version}" />
 
