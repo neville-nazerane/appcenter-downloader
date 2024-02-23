@@ -23,7 +23,8 @@ namespace AppCenterDownloader.MobileApp.Services
 
         public Task<IEnumerable<AppCenterOrganization>> GetOrganizationsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterOrganization>>("orgs", cancellationToken);
 
-        public Task<IEnumerable<AppCenterApp>> GetAppsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterApp>>("apps?%24orderBy=display_name", cancellationToken);
+        public IAsyncEnumerable<AppCenterApp> GetAppsAsync(CancellationToken cancellationToken = default) 
+            => GetAsAsyncEnumerable<AppCenterApp>("apps?%24orderBy=display_name", cancellationToken);
 
         public IAsyncEnumerable<AppCenterRelease> GetReleasesAsync(string owner_name,
                                                                    string app_name,

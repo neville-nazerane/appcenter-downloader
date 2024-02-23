@@ -4,6 +4,7 @@ using AppCenterDownloader.MobileApp.Models.LocalDb;
 using Java.Time;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -90,22 +91,31 @@ public class CentralService(AppCenterClientProvider appCenterClientProvider, Loc
         {
             var client = await GetAppCenterClientAsync(account.Key);
             
-            var apps = await client.GetAppsAsync(cancellationToken);
+            var appCollection = new ObservableCollection<AppDisplay>();
 
             yield return new()
             {
                 Key = account.Key,
                 DisplayName = account.DisplayName,
-                Apps = apps.Select(a => new AppDisplay()
-                {
-                    Id = a.Id,
-                    DisplayName = a.DisplayName,
-                    IconUrl = a.IconUrl,
-                    AppName = a.Name,
-                    OwnerName = a.Owner.Name,
-                    IsFavorite = favs.Any(f => f.Id == a.Id)
-                }).ToList()
+                Apps = appCollection
             };
+
+            var apps = client.GetAppsAsync(cancellationToken);
+
+            await foreach (var app in apps)
+            {
+                if (app.Os == "Android")
+                    appCollection.Add(new AppDisplay()
+                    {
+                        Id = app.Id,
+                        DisplayName = app.DisplayName,
+                        IconUrl = app.IconUrl,
+                        AppName = app.Name,
+                        OwnerName = app.Owner.Name,
+                        IsFavorite = favs.Any(f => f.Id == app.Id)
+                    });
+            }
+
         }
     }
 

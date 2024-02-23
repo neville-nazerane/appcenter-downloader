@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace AppCenterDownloader.MobileApp.Models
 
         public string DisplayName { get; set; }
 
-        public IEnumerable<AppDisplay> Apps { get; set; }
+        public ObservableCollection<AppDisplay> Apps { get; set; }
 
     }
 }
