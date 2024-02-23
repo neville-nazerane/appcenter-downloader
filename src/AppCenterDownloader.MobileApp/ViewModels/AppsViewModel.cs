@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,21 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public override async Task OnNavigatedToAsync()
         {
-            ViewModelBase.SetLastLocation();
+            SetLastLocation();
             Accounts = [];
 
-            var res = _service.GetAccountDisplaysAsync();
+            try
+            {
+                var res = _service.GetAccountDisplaysAsync();
 
-            await foreach (var account in res)
-                Accounts.Add(account);
+                await foreach (var account in res)
+                    Accounts.Add(account);
+            }
+            catch (Exception ex)
+            {
+                Debugger.Break();
+                await DisplayMessageAsync("Failed", "Failed to pull up accounts");
+            }
         }
 
         [RelayCommand]

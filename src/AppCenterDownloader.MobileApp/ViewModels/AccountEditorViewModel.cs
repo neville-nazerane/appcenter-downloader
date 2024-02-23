@@ -18,7 +18,6 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public override void OnNavigatedTo()
         {
-            var str = Shell.Current.CurrentState.Location;
             if (_sourceWall.EditingAccountId is not null)
             {
                 Model.Key = _sourceWall.EditingAccountId;
@@ -34,7 +33,13 @@ namespace AppCenterDownloader.MobileApp.ViewModels
         async Task SaveAsync()
         {
             if (!string.IsNullOrEmpty(Model.DisplayName) && !string.IsNullOrEmpty(Model.ApiKey))
+            {
+                if (Model.Key is null)
+                    Model.Key = Guid.NewGuid().ToString("N");
+
                 await _service.Upsert(Model);
+                await NavigateToAsync("apps");
+            }
         }
 
     }

@@ -23,5 +23,8 @@ namespace AppCenterDownloader.MobileApp.ViewModels
 
         public static Task NavigateToAsync(string path) => Shell.Current.GoToAsync($"//{path}");
 
+        public static Task DisplayMessageAsync(string title, string message)
+            => Shell.Current.DisplayAlert(title, message, "OK");
+
     }
 }

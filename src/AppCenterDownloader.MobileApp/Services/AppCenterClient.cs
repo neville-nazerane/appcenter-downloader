@@ -2,6 +2,7 @@
 using AppCenterDownloader.MobileApp.Models.AppCenter;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
@@ -22,7 +23,7 @@ namespace AppCenterDownloader.MobileApp.Services
 
         public Task<IEnumerable<AppCenterOrganization>> GetOrganizationsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterOrganization>>("orgs", cancellationToken);
 
-        public Task<IEnumerable<AppCenterApp>> GetAppsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterApp>>("apps?orderBy=display_name", cancellationToken);
+        public Task<IEnumerable<AppCenterApp>> GetAppsAsync(CancellationToken cancellationToken = default) => GetFromJsonAsync<IEnumerable<AppCenterApp>>("apps?%24orderBy=display_name", cancellationToken);
 
         public IAsyncEnumerable<AppCenterRelease> GetReleasesAsync(string owner_name,
                                                                    string app_name,
@@ -62,6 +63,13 @@ namespace AppCenterDownloader.MobileApp.Services
             var request = new HttpRequestMessage(HttpMethod.Get, path);
             request.Headers.Add("X-API-Token", _apiKey);
             var res = await _httpClient.SendAsync(request, cancellationToken);
+
+            if (Debugger.IsAttached && !res.IsSuccessStatusCode)
+            {
+                var body = await res.Content.ReadAsStringAsync();
+                Debugger.Break();
+            }
+
             res.EnsureSuccessStatusCode();
             return res;
         }

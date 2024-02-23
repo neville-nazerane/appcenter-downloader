@@ -4,11 +4,25 @@
              xmlns:vm="clr-namespace:AppCenterDownloader.MobileApp.ViewModels"
              x:Class="AppCenterDownloader.MobileApp.Pages.AccountEditorPage"
              x:DataType="vm:AccountEditorViewModel"
-             Title="AccountEditorPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Add something here!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Account">
+
+    <Grid RowDefinitions="40, 40, *, 50"
+          RowSpacing="30"
+          Margin="20, 50, 20, 20" >
+
+        <Entry Placeholder="Display Name"
+               Text="{Binding Model.DisplayName}" />
+        
+        <Entry Grid.Row="1"
+               Placeholder="Api KEY"
+               Text="{Binding Model.ApiKey}"
+               IsPassword="True" />
+        
+        
+        <Button Grid.Row="3"
+                Command="{Binding SaveCommand}"
+                Text="Save" />
+
+    </Grid>
+
 </ContentPage>
