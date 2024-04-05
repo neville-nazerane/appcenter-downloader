@@ -42,5 +42,8 @@ namespace AppCenterDownloader.MobileApp.ViewModels
             }
         }
 
+        [RelayCommand]
+        Task GoToApiKeysAsync() => Browser.OpenAsync("https://appcenter.ms/settings/apitokens");
+
     }
 }

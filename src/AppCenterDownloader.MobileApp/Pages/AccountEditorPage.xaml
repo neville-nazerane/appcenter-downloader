@@ -12,13 +12,22 @@
 
         <Entry Placeholder="Display Name"
                Text="{Binding Model.DisplayName}" />
-        
-        <Entry Grid.Row="1"
-               Placeholder="Api KEY"
+
+        <Grid Grid.Row="1"
+              ColumnSpacing="20"
+              ColumnDefinitions="*, auto" >
+
+            <Entry Placeholder="Api KEY"
                Text="{Binding Model.ApiKey}"
                IsPassword="True" />
-        
-        
+
+            <Button Grid.Column="1"
+                    Command="{Binding GoToApiKeysCommand}"
+                    Text="Open API Keys URL >>" />
+
+        </Grid>
+
+
         <Button Grid.Row="3"
                 Command="{Binding SaveCommand}"
                 Text="Save" />
