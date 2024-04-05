@@ -23,7 +23,7 @@
 		<ApplicationTitle>AppCenter Downloader</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.appcenterdownloader.mobileapp</ApplicationId>
+		<ApplicationId>mobile.appcenter.downloader</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

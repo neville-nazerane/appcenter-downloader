@@ -5,7 +5,12 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCenterDownloader.MobileApp", "AppCenterDownloader.MobileApp\AppCenterDownloader.MobileApp.csproj", "{D00E31F2-44A1-4EA4-9A28-1BD47B81FF22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterDownloader.MobileCodeGen", "AppCenterDownloader.MobileCodeGen\AppCenterDownloader.MobileCodeGen.csproj", "{0D321C11-5AE8-41DB-B91C-E26DB02EFE6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCenterDownloader.MobileCodeGen", "AppCenterDownloader.MobileCodeGen\AppCenterDownloader.MobileCodeGen.csproj", "{0D321C11-5AE8-41DB-B91C-E26DB02EFE6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5332562E-539E-4BE2-876F-23C5C056A3BE}"
+	ProjectSection(SolutionItems) = preProject
+		ReleaseNotes.txt = ReleaseNotes.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
